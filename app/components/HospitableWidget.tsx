@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from "react";
  */
 export default function HospitableWidget({ widgetUrl }: { widgetUrl: string }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [height, setHeight] = useState(500); // tight default that fits unbooked state; grows via postMessage when dates selected
+  const [height, setHeight] = useState(720); // tall enough to fit booked state with price details + Request button. Hospitable's white card sits centered on gold iframe bg, so no white dead space.
 
   useEffect(() => {
     const onMsg = (event: MessageEvent) => {
@@ -61,7 +61,7 @@ export default function HospitableWidget({ widgetUrl }: { widgetUrl: string }) {
           minWidth: "320px",
           border: 0,
           colorScheme: "light",
-          backgroundColor: "white",
+          backgroundColor: "#D4A84A",
           borderRadius: "12px",
           display: "block",
           transition: "height 200ms ease",
