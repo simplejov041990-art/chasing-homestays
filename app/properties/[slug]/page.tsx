@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import HospitableWidget from "../../components/HospitableWidget";
 import { properties, getPropertyBySlug } from "../../data/properties";
@@ -26,14 +27,19 @@ export default function PropertyPage({ params }: { params: { slug: string } }) {
   return (
     <>
       {/* HERO IMAGE STRIP */}
-      <section className={`pt-24 ${property.gradient} relative`} style={{ minHeight: 420 }}>
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(135deg, transparent 0, transparent 30px, rgba(255,255,255,0.1) 30px, rgba(255,255,255,0.1) 31px)",
-          }}
-        />
+      <section className={`pt-24 relative ${property.image ? "" : property.gradient}`} style={{ minHeight: 480 }}>
+        {property.image && (
+          <Image
+            src={property.image}
+            alt={property.name}
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+            unoptimized
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/55 to-black/85" />
         <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto pt-20 pb-12 text-white">
           <Link href="/properties" className="text-white/80 text-sm hover:text-white inline-flex items-center gap-2 mb-6">
             ← Back to all properties
