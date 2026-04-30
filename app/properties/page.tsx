@@ -10,7 +10,7 @@ export default function PropertiesPage() {
           Homes <em className="text-accent">worth chasing.</em>
         </h1>
         <p className="text-lg text-ink-soft max-w-2xl">
-          Hand-managed properties across the Philippines. Click any property to check availability and book direct — no OTA fees.
+          Hand-managed properties across the United States. Click any property to check availability and book direct — no OTA fees.
         </p>
       </section>
 
