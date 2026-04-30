@@ -5,37 +5,46 @@ import { useEffect, useRef, useState } from "react";
 /**
  * HospitableWidget — embeds Hospitable's per-property booking widget.
  *
- * Each property has its own widget URL. Get it from:
- *   Hospitable → Direct → Open your widget in edit mode → Find the property → Copy widget code
+ * The widget is cross-origin so we can't introspect or style its internals.
+ * To avoid white dead space below the widget without clipping the booked
+ * state, we start at a tight default and grow on first user interaction.
  */
 export default function HospitableWidget({ widgetUrl }: { widgetUrl: string }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [height, setHeight] = useState(720); // tall enough to fit booked state with price details + Request button
+  const [height, setHeight] = useState(500); // tight default for unbooked state
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     const onMsg = (event: MessageEvent) => {
       const data = event.data;
       if (!data || typeof data !== "object") return;
 
-      // Existing redirect behavior
       if (data.hospitable_widget_redirect) {
         window.location.href = data.hospitable_widget_redirect;
         return;
       }
 
-      // Auto-resize when Hospitable sends a height
-      // (different versions use different keys — check several)
+      // If Hospitable ever emits a height, honor it
       const candidate =
         data.hospitable_widget_height ??
         data.height ??
         (data.type?.includes("height") ? data.value : null);
       if (typeof candidate === "number" && candidate > 200 && candidate < 2000) {
         setHeight(candidate);
+        setExpanded(true);
       }
     };
     window.addEventListener("message", onMsg);
     return () => window.removeEventListener("message", onMsg);
   }, []);
+
+  // Grow on first interaction (hover/focus/click) so price-details fit when dates are selected
+  const expand = () => {
+    if (!expanded) {
+      setExpanded(true);
+      setHeight(720);
+    }
+  };
 
   if (!widgetUrl || widgetUrl.includes("REPLACE-ME")) {
     return (
@@ -50,7 +59,11 @@ export default function HospitableWidget({ widgetUrl }: { widgetUrl: string }) {
   }
 
   return (
-    <div className="bg-accent rounded-2xl p-3 shadow-xl">
+    <div
+      className="bg-accent rounded-2xl p-3 shadow-xl"
+      onPointerEnter={expand}
+      onFocus={expand}
+    >
       <iframe
         ref={iframeRef}
         src={widgetUrl}
@@ -64,7 +77,7 @@ export default function HospitableWidget({ widgetUrl }: { widgetUrl: string }) {
           backgroundColor: "white",
           borderRadius: "12px",
           display: "block",
-          transition: "height 200ms ease",
+          transition: "height 250ms ease",
         }}
         sandbox="allow-top-navigation allow-scripts allow-same-origin allow-forms"
         loading="lazy"
