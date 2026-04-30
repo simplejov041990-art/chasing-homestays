@@ -92,14 +92,9 @@ export default function PropertyPage({ params }: { params: { slug: string } }) {
               </div>
             </div>
 
-            {property.summary && (
-              <p className="font-serif italic text-lg text-ink leading-relaxed mb-8">
-                {property.summary}
-              </p>
-            )}
-
-            <h2 className="font-serif text-3xl mb-4">About this stay</h2>
+            <h2 className="font-serif text-3xl mb-6">About this stay</h2>
             <div className="text-ink-soft leading-relaxed mb-8 space-y-4">
+              {property.summary && <p>{property.summary}</p>}
               {descParagraphs.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
