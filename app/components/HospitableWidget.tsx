@@ -1,18 +1,42 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 /**
  * HospitableWidget — embeds Hospitable's per-property booking widget.
  *
  * Each property has its own widget URL. Get it from:
  *   Hospitable → Direct → Open your widget in edit mode → Find the property → Copy widget code
- *
- * The URL looks like:
- *   https://booking.hospitable.com/widget/WIDGET-ID/PROPERTY-ID
- *
- * Add it to the property entry in app/data/properties.ts under `widgetUrl`.
  */
 export default function HospitableWidget({ widgetUrl }: { widgetUrl: string }) {
-  // Show a friendly placeholder if the widget URL hasn't been filled in yet
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [height, setHeight] = useState(520); // tight default that fits unbooked state
+
+  useEffect(() => {
+    const onMsg = (event: MessageEvent) => {
+      const data = event.data;
+      if (!data || typeof data !== "object") return;
+
+      // Existing redirect behavior
+      if (data.hospitable_widget_redirect) {
+        window.location.href = data.hospitable_widget_redirect;
+        return;
+      }
+
+      // Auto-resize when Hospitable sends a height
+      // (different versions use different keys — check several)
+      const candidate =
+        data.hospitable_widget_height ??
+        data.height ??
+        (data.type?.includes("height") ? data.value : null);
+      if (typeof candidate === "number" && candidate > 200 && candidate < 2000) {
+        setHeight(candidate);
+      }
+    };
+    window.addEventListener("message", onMsg);
+    return () => window.removeEventListener("message", onMsg);
+  }, []);
+
   if (!widgetUrl || widgetUrl.includes("REPLACE-ME")) {
     return (
       <div className="border-2 border-dashed border-ink/20 rounded-lg p-12 text-center bg-cream">
@@ -26,37 +50,25 @@ export default function HospitableWidget({ widgetUrl }: { widgetUrl: string }) {
   }
 
   return (
-    <>
-      {/* Required script: forwards redirect events from the widget iframe to the parent window */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.addEventListener('message', function(event){
-              if (event.data && event.data.hospitable_widget_redirect) {
-                window.location.href = event.data.hospitable_widget_redirect;
-              }
-            });
-          `,
+    <div className="bg-accent rounded-2xl p-3 shadow-xl">
+      <iframe
+        ref={iframeRef}
+        src={widgetUrl}
+        title="Booking Widget"
+        style={{
+          width: "100%",
+          height: `${height}px`,
+          minWidth: "320px",
+          border: 0,
+          colorScheme: "light",
+          backgroundColor: "white",
+          borderRadius: "12px",
+          display: "block",
+          transition: "height 200ms ease",
         }}
+        sandbox="allow-top-navigation allow-scripts allow-same-origin allow-forms"
+        loading="lazy"
       />
-      <div className="bg-accent rounded-2xl p-3 shadow-xl inline-block w-full">
-        <iframe
-          src={widgetUrl}
-          title="Booking Widget"
-          style={{
-            width: "100%",
-            height: "640px",
-            minWidth: "320px",
-            border: 0,
-            colorScheme: "light",
-            backgroundColor: "white",
-            borderRadius: "12px",
-            display: "block",
-          }}
-          sandbox="allow-top-navigation allow-scripts allow-same-origin allow-forms"
-          loading="lazy"
-        />
-      </div>
-    </>
+    </div>
   );
 }
