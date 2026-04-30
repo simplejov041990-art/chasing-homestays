@@ -1,4 +1,44 @@
 import Link from "next/link";
+import RevenueCalculator from "./components/RevenueCalculator";
+import FAQ from "./components/FAQ";
+
+const TESTIMONIALS = [
+  {
+    quote:
+      "We went from managing the property ourselves on weekends to never thinking about it. Bookings are up, reviews are higher, and we actually take vacations now.",
+    name: "Marcus & Lena",
+    role: "Owners, Carnegie",
+  },
+  {
+    quote:
+      "Their pricing changes weekly and you can tell — we're consistently outpacing the comps in our neighborhood. Worth every point of commission.",
+    name: "Anita R.",
+    role: "Owner, Wilton Manors",
+  },
+  {
+    quote:
+      "Smooth onboarding, professional photos, and the direct-booking site brought in a returning guest within the first month. Better than we expected.",
+    name: "David S.",
+    role: "Owner, Pinnacle Port",
+  },
+];
+
+const COMPARE = [
+  { feature: "Multi-channel listings (Airbnb, VRBO, Booking)", us: true, diy: false, traditional: true },
+  { feature: "Daily dynamic pricing", us: true, diy: false, traditional: "Sometimes" },
+  { feature: "24/7 guest communication", us: true, diy: false, traditional: true },
+  { feature: "Vetted cleaners with quality checks", us: true, diy: "DIY", traditional: true },
+  { feature: "Direct-booking site (commission-free bookings)", us: true, diy: false, traditional: false },
+  { feature: "Transparent flat commission, no markups", us: true, diy: "—", traditional: false },
+  { feature: "Owner can block dates anytime", us: true, diy: true, traditional: "Sometimes" },
+  { feature: "30-day exit, no penalty", us: true, diy: "—", traditional: false },
+];
+
+function Cell({ value }: { value: boolean | string }) {
+  if (value === true) return <span className="text-accent text-xl">✓</span>;
+  if (value === false) return <span className="text-ink-soft/50 text-xl">—</span>;
+  return <span className="text-ink-soft text-xs uppercase tracking-[0.15em]">{value}</span>;
+}
 
 export default function Home() {
   return (
@@ -42,7 +82,7 @@ export default function Home() {
           <div className="absolute top-[35%] left-[5%] w-[35%] h-[30%] rounded-lg shadow-2xl overflow-hidden"
                style={{ background: "linear-gradient(135deg, #c44d2e 0%, #7a2c18 100%)" }} />
 
-          <div className="absolute -bottom-4 right-[5%] bg-bg px-6 py-4 rounded shadow-xl border border-ink/10 z-10">
+          <div className="absolute -bottom-4 right-[5%] bg-cream px-6 py-4 rounded shadow-xl border border-ink/10 z-10">
             <div className="font-serif text-2xl text-accent font-medium">94%</div>
             <div className="text-xs uppercase tracking-[0.15em] text-ink-soft">Avg. Occupancy</div>
           </div>
@@ -90,6 +130,82 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* REVENUE CALCULATOR */}
+      <RevenueCalculator />
+
+      {/* COMPARISON TABLE */}
+      <section className="bg-cream border-y border-ink/10 px-6 md:px-12 py-24">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-xs uppercase tracking-[0.2em] text-accent mb-6 text-center">
+            How We Compare
+          </div>
+          <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight mb-12 text-center">
+            What you actually <em className="text-accent">get with us.</em>
+          </h2>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-ink/20">
+                  <th className="text-left py-4 pr-4 text-xs uppercase tracking-[0.15em] text-ink-soft font-normal">
+                    Feature
+                  </th>
+                  <th className="py-4 px-3 text-xs uppercase tracking-[0.15em] text-accent font-normal">
+                    Chasing
+                  </th>
+                  <th className="py-4 px-3 text-xs uppercase tracking-[0.15em] text-ink-soft font-normal">
+                    DIY
+                  </th>
+                  <th className="py-4 px-3 text-xs uppercase tracking-[0.15em] text-ink-soft font-normal">
+                    Traditional PM
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARE.map((row) => (
+                  <tr key={row.feature} className="border-b border-ink/10">
+                    <td className="py-4 pr-4 text-ink-soft">{row.feature}</td>
+                    <td className="py-4 px-3 text-center"><Cell value={row.us} /></td>
+                    <td className="py-4 px-3 text-center"><Cell value={row.diy} /></td>
+                    <td className="py-4 px-3 text-center"><Cell value={row.traditional} /></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="px-6 md:px-12 py-24 max-w-7xl mx-auto">
+        <div className="text-xs uppercase tracking-[0.2em] text-accent mb-6">Reviews</div>
+        <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight mb-12 max-w-3xl">
+          What owners say <em className="text-accent">about working with us.</em>
+        </h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {TESTIMONIALS.map((t) => (
+            <figure
+              key={t.name}
+              className="bg-cream border border-ink/10 rounded p-8 flex flex-col"
+            >
+              <div className="text-accent mb-4 tracking-widest">★★★★★</div>
+              <blockquote className="font-serif italic text-lg leading-relaxed mb-6 flex-1">
+                &ldquo;{t.quote}&rdquo;
+              </blockquote>
+              <figcaption className="border-t border-ink/15 pt-4">
+                <div className="font-serif text-base">{t.name}</div>
+                <div className="text-xs uppercase tracking-[0.15em] text-ink-soft mt-1">
+                  {t.role}
+                </div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <FAQ />
 
       {/* CTA */}
       <section className="bg-accent text-bg px-6 md:px-12 py-24 text-center relative overflow-hidden">

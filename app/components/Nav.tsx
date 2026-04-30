@@ -5,13 +5,13 @@ export default function Nav() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-4 flex justify-between items-center bg-bg/90 backdrop-blur-md border-b border-ink/10">
       <Link href="/" className="flex items-center gap-3">
-        <Image src="/logo.svg" alt="Chasing Homestays" width={40} height={40} priority />
+        <Image src="/logo.png" alt="Chasing Homestays" width={44} height={44} priority className="rounded-full" />
         <span className="font-serif text-xl italic tracking-tight">
           Chasing <span className="text-accent">Homestays</span>
         </span>
       </Link>
 
-      <ul className="hidden md:flex gap-10 items-center text-sm">
+      <ul className="hidden md:flex gap-8 items-center text-sm">
         <li>
           <Link href="/homeowners" className="hover:text-accent transition-colors">
             For Homeowners
@@ -20,6 +20,11 @@ export default function Nav() {
         <li>
           <Link href="/properties" className="hover:text-accent transition-colors">
             Book Direct
+          </Link>
+        </li>
+        <li>
+          <Link href="/about" className="hover:text-accent transition-colors">
+            About
           </Link>
         </li>
         <li>

@@ -34,11 +34,11 @@ export default function PropertyPage({ params }: { params: { slug: string } }) {
               "repeating-linear-gradient(135deg, transparent 0, transparent 30px, rgba(255,255,255,0.1) 30px, rgba(255,255,255,0.1) 31px)",
           }}
         />
-        <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto pt-20 pb-12 text-bg">
-          <Link href="/properties" className="text-bg/80 text-sm hover:text-bg inline-flex items-center gap-2 mb-6">
+        <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto pt-20 pb-12 text-white">
+          <Link href="/properties" className="text-white/80 text-sm hover:text-white inline-flex items-center gap-2 mb-6">
             ← Back to all properties
           </Link>
-          <span className="inline-block bg-bg/95 text-ink px-3 py-1 rounded-full text-xs uppercase tracking-[0.15em] mb-6">
+          <span className="inline-block bg-white/95 text-black px-3 py-1 rounded-full text-xs uppercase tracking-[0.15em] mb-6">
             {property.tag}
           </span>
           <h1 className="font-serif text-5xl md:text-7xl font-light leading-[0.95] tracking-tight mb-4">

@@ -40,16 +40,16 @@ export default function HomeownersPage() {
       </section>
 
       {/* PRICING TEASER */}
-      <section className="bg-ink text-bg px-6 md:px-12 py-24">
+      <section className="bg-cream text-ink border-y border-ink/10 px-6 md:px-12 py-24">
         <div className="max-w-4xl mx-auto text-center">
           <div className="text-xs uppercase tracking-[0.2em] text-gold mb-6">Simple Pricing</div>
           <h2 className="font-serif text-4xl md:text-6xl font-light mb-6 tracking-tight">
             One transparent <em className="text-gold">commission</em>.
           </h2>
-          <p className="text-bg/80 text-lg mb-10 max-w-xl mx-auto">
+          <p className="text-ink/80 text-lg mb-10 max-w-xl mx-auto">
             Performance-based. We only earn when you do. Detailed pricing shared during your free consultation.
           </p>
-          <Link href="/contact" className="bg-bg text-ink px-10 py-4 rounded-full text-sm font-medium inline-flex items-center gap-2 hover:bg-gold hover:text-ink transition-colors">
+          <Link href="/contact" className="bg-accent text-bg px-10 py-4 rounded-full text-sm font-medium inline-flex items-center gap-2 hover:bg-ink hover:text-bg transition-colors">
             Get Your Quote →
           </Link>
         </div>

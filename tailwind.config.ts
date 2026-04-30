@@ -5,14 +5,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg: "#f4efe8",
-        ink: "#0A0A0A",
-        "ink-soft": "#4a4540",
-        accent: "#C9A84C",
-        "accent-deep": "#9C7A2E",
-        cream: "#ede5d8",
+        bg: "#0a0a0a",
+        ink: "#f4efe8",
+        "ink-soft": "#a8a39a",
+        accent: "#D4A84A",
+        "accent-deep": "#B8902E",
+        cream: "#161616",
         sage: "#5a6b51",
-        gold: "#C9A84C",
+        gold: "#D4A84A",
       },
       fontFamily: {
         serif: ["var(--font-fraunces)", "serif"],
