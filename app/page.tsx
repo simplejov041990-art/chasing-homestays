@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import RevenueCalculator from "./components/RevenueCalculator";
 import FAQ from "./components/FAQ";
 
@@ -75,12 +76,18 @@ export default function Home() {
         </div>
 
         <div className="relative h-[500px] md:h-[600px] z-[1]">
-          <div className="absolute top-0 right-0 w-[70%] h-[70%] rounded-lg shadow-2xl overflow-hidden"
-               style={{ background: "linear-gradient(135deg, #d4a574 0%, #8a5a3b 100%)" }} />
-          <div className="absolute bottom-0 left-0 w-[50%] h-[45%] rounded-lg shadow-2xl overflow-hidden"
-               style={{ background: "linear-gradient(135deg, #5a6b51 0%, #2d3a26 100%)" }} />
-          <div className="absolute top-[35%] left-[5%] w-[35%] h-[30%] rounded-lg shadow-2xl overflow-hidden"
-               style={{ background: "linear-gradient(135deg, #c44d2e 0%, #7a2c18 100%)" }} />
+          <div className="relative w-full h-full rounded-lg overflow-hidden shadow-2xl">
+            <Image
+              src="https://a0.muscache.com/im/pictures/hosting/Hosting-1512684830768082453/original/f506d9e6-d1a5-4626-8543-4fd000dc2d48.jpeg?aki_policy=large"
+              alt="Pinnacle Port — beachfront condo, Panama City Beach"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+              priority
+              unoptimized
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-transparent" />
+          </div>
 
           <div className="absolute -bottom-4 right-[5%] bg-cream px-6 py-4 rounded shadow-xl border border-ink/10 z-10">
             <div className="font-serif text-2xl text-accent font-medium">94%</div>
