@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from "react";
  */
 export default function HospitableWidget({ widgetUrl }: { widgetUrl: string }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [height, setHeight] = useState(520); // tight default that fits unbooked state
+  const [height, setHeight] = useState(470); // tight default that fits unbooked state; grows via postMessage when dates selected
 
   useEffect(() => {
     const onMsg = (event: MessageEvent) => {
