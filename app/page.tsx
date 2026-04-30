@@ -50,7 +50,6 @@ export default function Home() {
              style={{ background: "radial-gradient(circle, rgba(196,77,46,0.12), transparent 70%)" }} />
 
         <div className="relative z-10">
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-ink-soft mb-8 before:content-[''] before:w-8 before:h-px before:bg-accent" />
           <p className="text-xs uppercase tracking-[0.2em] text-ink-soft mb-8">
             <span className="inline-block w-8 h-px bg-accent align-middle mr-3" />
             Property Management, Reimagined
@@ -78,8 +77,8 @@ export default function Home() {
         <div className="relative h-[500px] md:h-[600px] z-[1]">
           <div className="relative w-full h-full rounded-lg overflow-hidden shadow-2xl">
             <Image
-              src="https://a0.muscache.com/im/pictures/hosting/Hosting-1512684830768082453/original/f506d9e6-d1a5-4626-8543-4fd000dc2d48.jpeg?aki_policy=large"
-              alt="Pinnacle Port — beachfront condo, Panama City Beach"
+              src="https://a0.muscache.com/im/pictures/miso/Hosting-1005795433033733920/original/76909a54-589b-42f9-a220-b7bf3fe94070.jpeg?aki_policy=large"
+              alt="Breton Ridge — Tallahassee, FL"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
