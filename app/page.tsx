@@ -46,39 +46,21 @@ export default function Home() {
     <>
       {/* HERO */}
       <section className="relative min-h-screen flex items-center justify-center px-6 md:px-12 py-32 overflow-hidden">
-        {/* Split-image background */}
-        <div className="absolute inset-0 grid grid-cols-2">
-          <div className="relative">
-            <Image
-              src="https://a0.muscache.com/im/pictures/miso/Hosting-1005795433033733920/original/76909a54-589b-42f9-a220-b7bf3fe94070.jpeg?aki_policy=large"
-              alt=""
-              fill
-              sizes="50vw"
-              className="object-cover"
-              priority
-              unoptimized
-            />
-          </div>
-          <div className="relative">
-            <Image
-              src="https://a0.muscache.com/im/pictures/hosting/Hosting-1512684830768082453/original/f506d9e6-d1a5-4626-8543-4fd000dc2d48.jpeg?aki_policy=large"
-              alt=""
-              fill
-              sizes="50vw"
-              className="object-cover"
-              priority
-              unoptimized
-            />
-          </div>
-        </div>
-        {/* Dark overlay for text legibility */}
+        <Image
+          src="https://a0.muscache.com/im/pictures/miso/Hosting-993336142820779150/original/8632020e-d62f-4141-bef8-cb86b7fa4656.jpeg?aki_policy=large"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
+          unoptimized
+        />
         <div className="absolute inset-0 bg-black/65" />
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: "radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.45) 75%)" }}
         />
 
-        {/* Centered content */}
         <div className="relative z-10 text-center max-w-3xl text-white">
           <span className="inline-block bg-white/95 text-black text-[0.7rem] uppercase tracking-[0.2em] px-5 py-2 rounded-full mb-8">
             Property Management, Reimagined
@@ -101,12 +83,6 @@ export default function Home() {
               Browse Stays
             </Link>
           </div>
-        </div>
-
-        {/* 94% stat badge */}
-        <div className="absolute bottom-8 right-8 bg-cream px-6 py-4 rounded shadow-xl border border-ink/10 z-10">
-          <div className="font-serif text-2xl text-accent font-medium">94%</div>
-          <div className="text-xs uppercase tracking-[0.15em] text-ink-soft">Avg. Occupancy</div>
         </div>
       </section>
 

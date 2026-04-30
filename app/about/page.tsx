@@ -8,7 +8,6 @@ export const metadata: Metadata = {
 };
 
 const stats = [
-  { value: "94%", label: "Avg. Occupancy" },
   { value: "64", label: "Properties Managed" },
   { value: "4.9★", label: "Avg. Guest Review" },
   { value: "30+", label: "Cities" },
@@ -49,7 +48,7 @@ export default function AboutPage() {
       </section>
 
       <section className="px-6 md:px-12 max-w-7xl mx-auto pb-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-y border-ink/10 py-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border-y border-ink/10 py-10">
           {stats.map((s) => (
             <div key={s.label}>
               <div className="font-serif text-4xl md:text-5xl text-accent">{s.value}</div>

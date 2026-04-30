@@ -8,22 +8,22 @@ export const metadata: Metadata = {
 
 const team = [
   {
+    name: "Jonathan Orkin",
+    role: "President & CEO",
+    bio:
+      "Jonathan founded Chasing Homestays and leads strategy, growth, and owner relationships across the portfolio.",
+  },
+  {
     name: "Jovie Ocampo",
-    role: "President & Founder",
+    role: "Operations Manager",
     bio:
-      "Jovie leads Chasing Homestays and oversees operations across the portfolio. Background in operations and short-term rental investing.",
+      "Jovie runs day-to-day operations — onboarding, vendor management, turnover quality, and reporting — keeping every property humming.",
   },
   {
-    name: "Operations",
-    role: "Guest Care & Turnover",
+    name: "Guest Care",
+    role: "24/7 Communication",
     bio:
-      "Our 24/7 guest team handles every booking inquiry, check-in question, and turnover detail — so owners never have to.",
-  },
-  {
-    name: "Revenue",
-    role: "Pricing & Distribution",
-    bio:
-      "Daily rate optimization across Airbnb, VRBO, Booking.com, and our direct channel — tuned by demand, season, and local events.",
+      "Our guest team handles every booking inquiry, check-in question, and on-property issue so owners never have to answer at midnight.",
   },
 ];
 
