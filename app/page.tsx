@@ -45,53 +45,68 @@ export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="min-h-screen pt-32 pb-16 px-6 md:px-12 grid md:grid-cols-[1.3fr_1fr] gap-16 items-center relative">
-        <div className="absolute top-[15%] -right-[5%] w-[400px] h-[400px] rounded-full pointer-events-none"
-             style={{ background: "radial-gradient(circle, rgba(196,77,46,0.12), transparent 70%)" }} />
+      <section className="relative min-h-screen flex items-center justify-center px-6 md:px-12 py-32 overflow-hidden">
+        {/* Split-image background */}
+        <div className="absolute inset-0 grid grid-cols-2">
+          <div className="relative">
+            <Image
+              src="https://a0.muscache.com/im/pictures/miso/Hosting-1005795433033733920/original/76909a54-589b-42f9-a220-b7bf3fe94070.jpeg?aki_policy=large"
+              alt=""
+              fill
+              sizes="50vw"
+              className="object-cover"
+              priority
+              unoptimized
+            />
+          </div>
+          <div className="relative">
+            <Image
+              src="https://a0.muscache.com/im/pictures/hosting/Hosting-1512684830768082453/original/f506d9e6-d1a5-4626-8543-4fd000dc2d48.jpeg?aki_policy=large"
+              alt=""
+              fill
+              sizes="50vw"
+              className="object-cover"
+              priority
+              unoptimized
+            />
+          </div>
+        </div>
+        {/* Dark overlay for text legibility */}
+        <div className="absolute inset-0 bg-black/65" />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.45) 75%)" }}
+        />
 
-        <div className="relative z-10">
-          <p className="text-xs uppercase tracking-[0.2em] text-ink-soft mb-8">
-            <span className="inline-block w-8 h-px bg-accent align-middle mr-3" />
+        {/* Centered content */}
+        <div className="relative z-10 text-center max-w-3xl text-white">
+          <span className="inline-block bg-white/95 text-black text-[0.7rem] uppercase tracking-[0.2em] px-5 py-2 rounded-full mb-8">
             Property Management, Reimagined
-          </p>
+          </span>
 
           <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-light leading-[0.95] tracking-tight mb-8">
             Your property,<br />
-            <em className="text-accent not-italic font-normal" style={{ fontStyle: "italic" }}>our priority.</em>
+            <em className="text-accent" style={{ fontStyle: "italic" }}>our priority.</em>
           </h1>
 
-          <p className="text-lg text-ink-soft max-w-md mb-10 leading-relaxed">
+          <p className="text-lg text-white/85 max-w-xl mx-auto mb-10 leading-relaxed">
             We list, manage, and grow your short-term rental across Airbnb, VRBO, and Booking.com — while giving guests a smarter way to book direct.
           </p>
 
-          <div className="flex flex-wrap gap-4 items-center">
-            <Link href="/homeowners" className="bg-ink text-bg px-8 py-4 rounded-full text-sm font-medium hover:bg-accent hover:-translate-y-0.5 transition-all inline-flex items-center gap-2">
+          <div className="flex flex-wrap gap-4 items-center justify-center">
+            <Link href="/homeowners" className="bg-accent text-bg px-8 py-4 rounded-full text-sm font-medium hover:bg-white hover:text-black transition-all inline-flex items-center gap-2">
               List Your Property →
             </Link>
-            <Link href="/properties" className="text-ink border-b border-ink pb-0.5 hover:text-accent hover:border-accent transition-colors">
+            <Link href="/properties" className="text-white border-b border-white/80 pb-0.5 hover:text-accent hover:border-accent transition-colors">
               Browse Stays
             </Link>
           </div>
         </div>
 
-        <div className="relative h-[500px] md:h-[600px] z-[1]">
-          <div className="relative w-full h-full rounded-lg overflow-hidden shadow-2xl">
-            <Image
-              src="https://a0.muscache.com/im/pictures/miso/Hosting-1005795433033733920/original/76909a54-589b-42f9-a220-b7bf3fe94070.jpeg?aki_policy=large"
-              alt="Breton Ridge — Tallahassee, FL"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
-              priority
-              unoptimized
-            />
-            <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-transparent" />
-          </div>
-
-          <div className="absolute -bottom-4 right-[5%] bg-cream px-6 py-4 rounded shadow-xl border border-ink/10 z-10">
-            <div className="font-serif text-2xl text-accent font-medium">94%</div>
-            <div className="text-xs uppercase tracking-[0.15em] text-ink-soft">Avg. Occupancy</div>
-          </div>
+        {/* 94% stat badge */}
+        <div className="absolute bottom-8 right-8 bg-cream px-6 py-4 rounded shadow-xl border border-ink/10 z-10">
+          <div className="font-serif text-2xl text-accent font-medium">94%</div>
+          <div className="text-xs uppercase tracking-[0.15em] text-ink-soft">Avg. Occupancy</div>
         </div>
       </section>
 
