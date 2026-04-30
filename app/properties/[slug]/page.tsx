@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import HospitableWidget from "../../components/HospitableWidget";
+import PhotoGallery from "../../components/PhotoGallery";
 import { properties, getPropertyBySlug } from "../../data/properties";
 import { formatAmenity, paragraphs } from "../../lib/format";
 import type { Metadata } from "next";
@@ -24,7 +25,10 @@ export default function PropertyPage({ params }: { params: { slug: string } }) {
   if (!property) notFound();
 
   const heroImage = property.image || property.images[0];
-  const galleryImages = property.images.slice(0, 5);
+  // Skip the hero from the gallery so we don't repeat it
+  const galleryImages = (property.images || []).filter(
+    (src) => src !== heroImage
+  );
   const descParagraphs = paragraphs(property.description);
 
   return (
@@ -58,27 +62,9 @@ export default function PropertyPage({ params }: { params: { slug: string } }) {
       </section>
 
       {/* PHOTO GALLERY */}
-      {galleryImages.length > 1 && (
+      {galleryImages.length > 0 && (
         <section className="px-6 md:px-12 max-w-7xl mx-auto py-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {galleryImages.slice(1, 5).map((src, i) => (
-              <div key={src} className="relative aspect-[4/3] rounded overflow-hidden bg-cream">
-                <Image
-                  src={src}
-                  alt={`${property.name} — photo ${i + 2}`}
-                  fill
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-            ))}
-          </div>
-          {property.images.length > 5 && (
-            <div className="text-xs uppercase tracking-[0.15em] text-ink-soft mt-4 text-right">
-              {property.images.length} photos total
-            </div>
-          )}
+          <PhotoGallery photos={galleryImages} alt={property.name} />
         </section>
       )}
 

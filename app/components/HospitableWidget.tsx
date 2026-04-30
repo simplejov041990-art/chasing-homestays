@@ -39,13 +39,22 @@ export default function HospitableWidget({ widgetUrl }: { widgetUrl: string }) {
           `,
         }}
       />
-      <iframe
-        src={widgetUrl}
-        title="Booking Widget"
-        style={{ width: "100%", height: "900px", minWidth: "320px", border: 0 }}
-        sandbox="allow-top-navigation allow-scripts allow-same-origin allow-forms"
-        loading="lazy"
-      />
+      <div className="bg-white rounded-lg overflow-hidden border border-ink/10">
+        <iframe
+          src={widgetUrl}
+          title="Booking Widget"
+          style={{
+            width: "100%",
+            height: "900px",
+            minWidth: "320px",
+            border: 0,
+            colorScheme: "light",
+            backgroundColor: "white",
+          }}
+          sandbox="allow-top-navigation allow-scripts allow-same-origin allow-forms"
+          loading="lazy"
+        />
+      </div>
     </>
   );
 }
