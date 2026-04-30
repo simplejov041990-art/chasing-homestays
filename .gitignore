@@ -4,3 +4,6 @@ node_modules
 .env*.local
 .DS_Store
 *.log
+
+# Hospitable API snapshot (re-fetch via scripts/sync-from-hospitable.mjs)
+scripts/.hospitable-snapshot.json

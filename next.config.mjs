@@ -12,6 +12,11 @@ const nextConfig = {
         hostname: "media.vrbo.com",
         pathname: "/lodging/**",
       },
+      {
+        protocol: "https",
+        hostname: "assets.hospitable.com",
+        pathname: "/property_images/**",
+      },
     ],
   },
 };
